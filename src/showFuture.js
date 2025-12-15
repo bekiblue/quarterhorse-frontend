@@ -1,7 +1,7 @@
 // Check URL query parameter first, then fall back to environment variable
 const getShowFuture = () => {
-  if (typeof window !== 'undefined') {
-    const urlParams = new URLSearchParams(window.location.search)
+  if (globalThis.window) {
+    const urlParams = new URLSearchParams(globalThis.location.search)
     const queryParam = urlParams.get('show_future')
 
     if (queryParam !== null) {

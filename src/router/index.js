@@ -16,12 +16,22 @@ import routes from './routes'
  * with the Router instance.
  */
 
-export default defineRouter(function (/* { store, ssrContext } */) {
-  const createHistory = process.env.SERVER
-    ? createMemoryHistory
-    : process.env.VUE_ROUTER_MODE === 'history'
-      ? createWebHistory
-      : createWebHashHistory
+/**
+ * Returns the appropriate history creation function based on environment.
+ * Exported for testing purposes.
+ */
+export function getHistoryMode() {
+  if (process.env.SERVER) {
+    return createMemoryHistory
+  } else if (process.env.VUE_ROUTER_MODE === 'history') {
+    return createWebHistory
+  } else {
+    return createWebHashHistory
+  }
+}
+
+export default defineRouter(function () {
+  const createHistory = getHistoryMode()
 
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),

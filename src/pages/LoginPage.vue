@@ -15,7 +15,7 @@
             v-model="password"
             type="password"
             label="Password"
-            aria-autocomplete="current-password"
+            autocomplete="current-password"
             outlined
             class="q-mb-md"
           />

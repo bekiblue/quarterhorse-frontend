@@ -27,7 +27,7 @@ onMounted(async () => {
   
   try {
     // Check for access_denied error in URL params
-    const urlParams = new URLSearchParams(window.location.search)
+    const urlParams = new URLSearchParams(globalThis.location.search)
     const error = urlParams.get('error')
     
     // Debug: Log all URL parameters
@@ -51,7 +51,7 @@ onMounted(async () => {
     
     // Prepare the request body with available fields
     const requestBody = {
-      redirect_uri: window.location.origin + '/auth/callback',
+      redirect_uri: globalThis.location.origin + '/auth/callback',
       code_verifier: await authService.getCodeVerifier(), // Get the code verifier from authService
       provider
     }

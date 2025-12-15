@@ -33,3 +33,7 @@ yarn-error.log*
 .env.local*
 .aider*
 .env
+
+# Test coverage reports
+coverage/
+.nyc_output/

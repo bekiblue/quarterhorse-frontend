@@ -1,13 +1,13 @@
 import { UserManager, WebStorageStateStore } from 'oidc-client-ts';
 
-const redirectUri = `${window.location.origin}/auth/callback`;
+const redirectUri = `${globalThis.location.origin}/auth/callback`;
 
 function getConfig(provider) {
   const base = {
     redirect_uri: redirectUri,
     response_type: 'code',
-    post_logout_redirect_uri: `${window.location.origin}/login`,
-    userStore: new WebStorageStateStore({ store: window.localStorage }),
+    post_logout_redirect_uri: `${globalThis.location.origin}/login`,
+    userStore: new WebStorageStateStore({ store: globalThis.localStorage }),
     // Enable PKCE for security
     code_challenge_method: 'S256',
   };
@@ -46,9 +46,7 @@ function getConfig(provider) {
 }
 
 class AuthService {
-  constructor() {
-    this.currentProvider = null;
-  }
+  currentProvider = null;
 
   async signIn(provider, invitationToken) {
     this.currentProvider = provider;
@@ -73,16 +71,16 @@ class AuthService {
    * This is needed if you're doing the /token exchange on your backend.
    */
   async getCodeVerifier() {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(globalThis.location.search);
     const stateKey = urlParams.get('state');
     if (!stateKey) {
       throw new Error('Missing state param in URL');
     }
 
-    const store = new WebStorageStateStore({ store: window.localStorage });
+    const store = new WebStorageStateStore({ store: globalThis.localStorage });
     const stateData = JSON.parse(await store.get(stateKey))
 
-    if (!stateData || !stateData.code_verifier) {
+    if (!stateData?.code_verifier) {
       throw new Error('PKCE code_verifier not found in storage');
     }
 
@@ -90,13 +88,13 @@ class AuthService {
   }
 
   async getStateDataValue(key, strict = true) {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(globalThis.location.search);
     const stateKey = urlParams.get('state');
     if (!stateKey) {
       throw new Error('Missing state param in URL');
     }
 
-    const store = new WebStorageStateStore({ store: window.localStorage });
+    const store = new WebStorageStateStore({ store: globalThis.localStorage });
     const stateData = JSON.parse(await store.get(stateKey));
 
     const value = stateData?.data?.[key] ?? null;

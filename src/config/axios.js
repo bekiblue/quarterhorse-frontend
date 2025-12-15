@@ -52,7 +52,7 @@ apiClient.interceptors.response.use(
       const retryAfter = error.response.headers['retry-after']
       if (retryAfter && !originalRequest._retryCount) {
         originalRequest._retryCount = 1
-        const delay = parseInt(retryAfter) * 1000
+        const delay = Number.parseInt(retryAfter) * 1000
         return new Promise((resolve) => {
           setTimeout(() => resolve(apiClient(originalRequest)), delay)
         })
@@ -71,7 +71,7 @@ apiClient.interceptors.response.use(
       })
     }
 
-    return Promise.reject(error)
+    throw error
   },
 )
 
