@@ -201,7 +201,7 @@ export default defineConfig((/* ctx */) => {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'rococo-sample-vue3'
+        appId: 'Quarterhorse-vue3'
       }
     },
 
