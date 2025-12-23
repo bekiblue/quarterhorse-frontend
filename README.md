@@ -1,6 +1,6 @@
-# Rococo Sample App (rococo-sample-vue3)
+# Quarterhorse App (Quarterhorse-vue3)
 
-A Vue3 starting point for rococo-based web apps
+A Vue3 app for rococo-based web apps
 
 ## Install the dependencies
 ```bash

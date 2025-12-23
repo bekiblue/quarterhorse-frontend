@@ -2,7 +2,7 @@
   <q-page class="flex row flex-center">
     <q-card class="col-11 col-sm-8 col-md-6 col-lg-4 col-xl-3 q-pa-xs q-pa-md-sm q-mb-xl">
       <q-card-section>
-        <div class="text-h6 text-center">Welcome to Rococo Sample</div>
+        <div class="text-h6 text-center">Welcome to Quarterhorse</div>
       </q-card-section>
 
       <q-card-section>

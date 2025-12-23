@@ -11,7 +11,7 @@
         v-if="authStore.isAuthenticated"
       />
 
-      <q-toolbar-title> Rococo Sample </q-toolbar-title>
+      <q-toolbar-title> Quarterhorse </q-toolbar-title>
 
       <div class="q-mr-md text-caption text-grey-5">v{{ version }}</div>
 
