@@ -51,7 +51,8 @@ jobs:
           
           echo "Running SonarQube Analysis..."
           sonar-scanner \
-            -Dsonar.projectKey=rococo-sample-vue3 \
+            -Dsonar.projectKey=bekiblue_quarterhorse-frontend \
+            -Dsonar.organization=bekiblue \
             -Dsonar.sources=src \
             -Dsonar.tests=test \
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
