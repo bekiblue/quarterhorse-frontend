@@ -5,7 +5,17 @@ const routes = [
     children: [
       {
         path: 'dashboard',
-        component: () => import('pages/IndexPage.vue'),
+        component: () => import('pages/dashboard/IndexPage.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'tasks',
+        component: () => import('pages/tasks/TasksPage.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'profile',
+        component: () => import('pages/profile/EditProfilePage.vue'),
         meta: { requiresAuth: true },
       },
     ],
@@ -16,23 +26,23 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
-        path: 'login',
-        component: () => import('pages/LoginPage.vue'),
+        path: 'signup',
+        component: () => import('pages/Auth/SignupPage.vue'),
         meta: { requiresAuth: false },
       },
       {
-        path: 'signup',
-        component: () => import('pages/SignupPage.vue'),
+        path: 'login',
+        component: () => import('pages/Auth/LoginPage.vue'),
         meta: { requiresAuth: false },
       },
       {
         path: 'forgot-password',
-        component: () => import('pages/ForgotPasswordPage.vue'),
+        component: () => import('pages/Auth/ForgotPasswordPage.vue'),
         meta: { requiresAuth: false },
       },
       {
         path: '/set-password/:token/:uidb64',
-        component: () => import('pages/SetPasswordPage.vue'),
+        component: () => import('pages/Auth/SetPasswordPage.vue'),
         meta: { requiresAuth: false },
       },
       {
@@ -47,7 +57,7 @@ const routes = [
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
+    component: () => import('pages/error/ErrorNotFound.vue'),
   },
 ]
 
