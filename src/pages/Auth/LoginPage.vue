@@ -78,7 +78,7 @@
     </q-card>
   </q-page>
 </template>
-  
+
 <script setup>
 import { ref, computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
@@ -136,4 +136,3 @@ async function signInWithMicrosoft() {
   }
 }
 </script>
-  
