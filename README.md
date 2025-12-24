@@ -9,7 +9,7 @@ yarn
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.) you should have quasar installed
+### Start the app in development mode For hot-code reloading, error reporting, and other development features, make sure you have Quasar installed.
 ```bash
 quasar dev
 ```
