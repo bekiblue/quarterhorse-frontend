@@ -1,0 +1,444 @@
+.tasks-page {
+  background: #f5f5f5;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.tasks-container {
+  max-width: 550px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.tasks-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  .tasks-title {
+    font-size: 6rem;
+    font-weight: 100;
+    margin: 0;
+    color: $primary;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+
+    @media (max-width: 600px) {
+      font-size: 4rem;
+    }
+  }
+}
+
+.task-card {
+  background: white;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 25px 50px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.input-section {
+  padding: 0;
+  border-bottom: 1px solid #e6e6e6;
+
+  .task-input {
+    font-size: 24px;
+    font-weight: 300;
+    color: #4d4d4d;
+
+    :deep(.q-field__control) {
+      padding: 16px 16px 16px 60px;
+      min-height: 65px;
+      display: flex;
+      align-items: center;
+    }
+
+    :deep(.q-field__native) {
+      padding: 0;
+      line-height: 1.4em;
+      display: flex;
+      align-items: center;
+    }
+
+    :deep(.q-field__prepend) {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      width: 30px;
+    }
+
+    :deep(.toggle-all-icon) {
+      cursor: pointer;
+      transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+
+      &:hover {
+        color: #5dc2af !important;
+        background-color: rgba(93, 194, 175, 0.1);
+        transform: scale(1.1);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    :deep(input::placeholder) {
+      color: #e6e6e6;
+    }
+  }
+}
+
+.state-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  min-height: 300px;
+
+  .state-text {
+    margin-top: 1.5rem;
+    color: #bfbfbf;
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+
+  .state-subtext {
+    margin-top: 0.5rem;
+    color: #bfbfbf;
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+}
+
+.tasks-content {
+  .tasks-list {
+    padding: 0;
+    max-height: 500px;
+    overflow-y: auto;
+
+    .task-item {
+      padding: 0;
+      border-bottom: 1px solid #ededed;
+      min-height: 60px;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        background-color: transparent;
+
+        .delete-icon {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+
+      &.task-completed {
+        .task-title {
+          color: #d9d9d9;
+          text-decoration: line-through;
+        }
+      }
+
+      &.task-editing {
+        padding: 0;
+
+        .edit-section {
+          padding: 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          .edit-input {
+            font-size: 24px;
+            font-weight: 300;
+            padding: 0 16px;
+            margin: 0;
+            width: 100%;
+
+            :deep(.q-field__control) {
+              padding: 0;
+              display: flex;
+              align-items: center;
+              min-height: 60px;
+            }
+
+            :deep(input) {
+              padding: 0;
+            }
+          }
+        }
+      }
+
+      :deep(.q-item__section) {
+        display: flex;
+        align-items: center;
+
+        &.avatar {
+          justify-content: flex-start;
+        }
+
+        &:not(.avatar):not(.side) {
+          justify-content: flex-start !important;
+          text-align: left !important;
+          padding-left: 0 !important;
+        }
+      }
+
+      :deep(.q-item-label) {
+        text-align: left !important;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        display: block;
+      }
+
+      .checkbox-section {
+        min-width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 12px;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .custom-checkbox {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        &:hover {
+          border-color: #999;
+        }
+
+        &.is-checked {
+          border-color: #ccc;
+          background: white;
+
+          .check-icon {
+            color: #5dc2af;
+            font-size: 20px;
+            font-weight: bold;
+          }
+        }
+
+        .check-icon {
+          display: none;
+        }
+
+        &.is-checked .check-icon {
+          display: block;
+        }
+      }
+
+      .task-title {
+        font-size: 24px;
+        font-weight: 300;
+        color: #4d4d4d;
+        cursor: pointer;
+        user-select: none;
+        padding: 0;
+        line-height: 1.4em;
+        word-break: break-word;
+        text-align: left !important;
+        margin: 0;
+        display: block;
+        width: 100%;
+
+        &.task-title-completed {
+          color: #d9d9d9;
+          text-decoration: line-through;
+        }
+      }
+
+      .delete-section {
+        min-width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-right: 12px;
+      }
+
+      .delete-icon {
+        font-size: 20px;
+        color: #cc9a9a;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.2s ease,
+          color 0.2s ease;
+        padding: 4px;
+        border-radius: 50%;
+
+        &:hover {
+          color: #af5b5e;
+          background-color: rgba(175, 91, 94, 0.1);
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
+      }
+    }
+  }
+
+  .tasks-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 10px 15px;
+    border-top: 1px solid #e6e6e6;
+    background-color: white;
+    color: #777;
+    font-size: 14px;
+    min-height: 50px;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .footer-left {
+      padding-left: 12px;
+
+      .task-count {
+        font-size: 14px;
+        color: #777;
+        font-weight: 300;
+
+        strong {
+          font-weight: 300;
+          color: #777;
+        }
+      }
+    }
+
+    .footer-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+
+      .filter-toggle {
+        :deep(.q-btn) {
+          padding: 3px 7px;
+          font-size: 14px;
+          min-height: auto;
+          margin: 0 2px;
+          font-weight: 300;
+          color: #777;
+          background: transparent;
+        }
+
+        :deep(.q-btn[aria-pressed='true']) {
+          color: #777;
+          border: 1px solid #777;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    .footer-right {
+      .clear-btn {
+        font-size: 14px;
+        color: #777;
+        text-transform: none;
+        padding: 0;
+        font-weight: 300;
+        text-decoration: none;
+
+        &:hover {
+          background: transparent;
+        }
+      }
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 10px 15px;
+
+      .footer-left,
+      .footer-center,
+      .footer-right {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .footer-center {
+        position: static;
+        transform: none;
+        order: -1;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+// Scrollbar styling
+.tasks-list {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+
+    &:hover {
+      background: #a8a8a8;
+    }
+  }
+}
+
+// Animation for new items
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item {
+  animation: slideIn 0.3s ease;
+}
