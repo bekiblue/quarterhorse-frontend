@@ -779,7 +779,7 @@ describe('auth.store.js - Pinia Store', () => {
 
         await store.requestPasswordReset('user@example.com')
 
-        expect(axios.post).toHaveBeenCalledWith('/auth/request_password_reset', {
+        expect(axios.post).toHaveBeenCalledWith('/auth/forgot_password', {
           email: 'user@example.com',
         })
       })

@@ -149,7 +149,7 @@ export const useAuthStore = defineStore('auth', {
      */
     async requestPasswordReset(email) {
       try {
-        const response = await axios.post('/auth/request_password_reset', { email })
+        const response = await axios.post('/auth/forgot_password', { email })
 
         if (response.data?.success) {
           Notify.create({
@@ -247,13 +247,53 @@ export const useAuthStore = defineStore('auth', {
     },
 
     /**
+     * Update user profile information
+    */
+    async updateProfileInfo(payload) {
+      try {
+        // Validate payload
+        if (!payload || typeof payload !== 'object') {
+          this.showErrorNotification('Invalid profile data')
+          return false
+        }
+
+        // Ensure token is fresh before making request
+        await this.checkAndRefreshToken()
+
+        const response = await axios.put('/person/me', payload)
+
+        if (response.data?.success) {
+          // Update user data if person data is provided
+          if (response.data?.person) {
+            this.updateUser(response.data.person)
+          }
+
+          Notify.create({
+            message: 'Profile updated successfully!',
+            color: 'positive',
+            position: 'top',
+            timeout: 3000,
+          })
+          return true
+        } else {
+          // Handle case where success is false but no error message
+          const errorMessage = response.data?.message || 'Failed to update profile'
+          this.showErrorNotification(errorMessage)
+          return false
+        }
+      } catch (error) {
+        return this.handleApiError(error, 'Failed to update profile')
+      }
+  },
+
+    /**
      * Login with OAuth provider
      */
     async loginWithOAuth(provider, payload) {
       try {
         return await handleOAuthRequest(
-          this, 
-          () => axios.post(`/auth/${provider}/exchange`, payload), 
+          this,
+          () => axios.post(`/auth/${provider}/exchange`, payload),
           this.router
         )
       } catch (error) {

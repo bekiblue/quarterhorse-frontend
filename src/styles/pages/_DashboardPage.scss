@@ -1,0 +1,258 @@
+.dashboard-page {
+  background: #f3f4f6;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+
+  @media (max-width: 600px) {
+    padding: 1rem 0.5rem;
+  }
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// Welcome Section
+.welcome-section {
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.6s ease-out;
+
+  .welcome-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.5rem;
+    }
+  }
+
+  .welcome-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .welcome-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+
+    @media (max-width: 600px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .welcome-subtitle {
+    margin: 0;
+    font-size: 1rem;
+    color: #6b7280;
+  }
+}
+
+// Statistics Grid
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+.stat-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  transition: all 0.3s ease;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .q-card__section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stat-card-total .stat-icon {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+  }
+
+  .stat-card-active .stat-icon {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+  }
+
+  .stat-card-completed .stat-icon {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+  }
+
+  .stat-card-progress .stat-icon {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    color: white;
+  }
+
+  .stat-content {
+    flex: 1;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+}
+
+// Content Grid
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.action-card,
+.tasks-card,
+.progress-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  .action-btn {
+    height: 48px;
+    font-weight: 500;
+  }
+}
+
+.loading-state,
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+
+  .empty-text {
+    margin: 1rem 0;
+    color: #6b7280;
+  }
+}
+
+.progress-content {
+  .progress-info {
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+
+      .progress-label {
+        font-size: 0.875rem;
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .progress-percentage {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #1f2937;
+      }
+    }
+
+    .progress-bar {
+      border-radius: 999px;
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
